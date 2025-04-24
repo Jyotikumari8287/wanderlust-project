@@ -52,7 +52,7 @@ const store = MongoStore.create({
 });
 
 store.on("error", () => {
-    console.log("ERROR in MONGO SESSION STORE", err);
+    console.log("ERROR IN MONGO SESSION STORE", err);
 });
 
 const sessionOptions = {
@@ -99,7 +99,7 @@ app.use((req, res, next) => {
 //     res.send(registerUser);
 // });
 
-app.use("/listings", listingRouter);
+app.use("/listings/", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
@@ -125,7 +125,7 @@ app.all("*", (req, res, next) => {
 
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Somthing went wrong!" } = err;
-    res.status(statusCode).render("error.ejs", { message });
+    res.status(statusCode).render("listings/error.ejs", { message });
     // res.status(statusCode).send(message);
 });
 

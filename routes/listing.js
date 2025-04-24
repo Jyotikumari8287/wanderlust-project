@@ -8,6 +8,7 @@ const multer = require("multer");
 const { storage } = require("../cloudConfig.js");
 const upload = multer({ storage });
 
+
 router
   .route("/")
   .get(wrapAsync(listingController.index))
@@ -31,7 +32,9 @@ router
      validateListing,
      wrapAsync(listingController.updateListing)
   )
-  .delete(isLoggedIn, isOwner, wrapAsync(listingController.destroyListing));
+  .delete(isLoggedIn, 
+    isOwner, 
+    wrapAsync(listingController.destroyListing));
 
 //Edit Route
 router.get(
